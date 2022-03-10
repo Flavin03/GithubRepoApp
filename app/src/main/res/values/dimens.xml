@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="linespacing">2dp</dimen>
+    <dimen name="margin8">8dp</dimen>
+    <dimen name="margin16">16dp</dimen>
+    <dimen name="margin24">24dp</dimen>
+    <dimen name="height_100">100dp</dimen>
+    <dimen name="height_200">200dp</dimen>
+    <dimen name="width_100">100dp</dimen>
+    <dimen name="width_200">200dp</dimen>
+    <dimen name="textsize_16">16sp</dimen>
+    <dimen name="textsize_18">18sp</dimen>
+    <dimen name="textsize_20">20sp</dimen>
+</resources>

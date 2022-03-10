@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="repo"
+            type="com.githubrepo.data.GithubEntity" />
+        <variable
+            name="owner"
+            type="com.githubrepo.data.Owner" />
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin16"
+        app:cardBackgroundColor="#fff"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/repo_layout"
+            android:onClick="@{clickListener}"
+            android:layout_marginTop="@dimen/margin8">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/width_100"
+                android:layout_height="@dimen/height_100"
+                android:padding="@dimen/margin16"
+                android:img="@{owner.avatar_url}"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/repo_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="100dp"
+                android:text="@{repo.name}"
+                android:textColor="#000000"
+                android:textSize="@dimen/textsize_20"
+                app:layout_constraintBottom_toBottomOf="@id/image"
+                app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintTop_toTopOf="@id/image" />
+
+                <TextView
+                    android:id="@+id/repo_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dp"
+                    android:text="@{repo.description}"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="@dimen/margin16"
+                    android:textSize="@dimen/textsize_18"
+                    android:maxLines="2"
+                    android:layout_marginStart="@dimen/margin8"
+                    android:layout_marginEnd="@dimen/margin8"
+                    android:lineSpacingExtra="@dimen/linespacing"
+                    app:layout_constraintTop_toBottomOf="@id/image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>
