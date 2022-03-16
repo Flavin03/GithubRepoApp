@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ApiInterface {
     @GET("search/repositories")
-    fun getRepoList(
+    suspend fun getRepoList(
         @Query("q") query: String,
         @Query("per_page") per_page: String,
         @Query("sort") sort: String,

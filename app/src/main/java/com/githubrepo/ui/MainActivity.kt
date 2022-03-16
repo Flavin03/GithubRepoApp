@@ -14,6 +14,7 @@ import com.githubrepo.data.GithubEntity
 import com.githubrepo.databinding.ActivityMainBinding
 import com.githubrepo.network.NetworkState
 import com.githubrepo.utils.ConnectivityUtil
+import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidInjection.inject(this)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
        // appStoreHomeViewModel = injectViewModel(viewModelFactory)
         appStoreHomeViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
@@ -67,35 +69,4 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-   /* private fun subscribeDataCallBack() {
-        binding.progress.visibility = View.VISIBLE
-        appStoreHomeViewModel.getData()?.observe(this, Observer<ArrayList<GithubEntity>> {
-            if (!it.isNullOrEmpty()) {
-                dataList = it
-                recyclerviewAdapter.setAppList(it)
-                binding.swipeRefresh.isRefreshing = false
-                binding.noData.visibility = View.GONE
-            } else {
-                binding.noData.visibility = View.VISIBLE
-            }
-            binding.progress.visibility = View.GONE
-        })
-    }
-
-    private fun setRecyclerView(dataList: ArrayList<GithubEntity>) {
-        recyclerviewAdapter = RecyclerviewAdapter()
-        recyclerviewAdapter.onLayoutClickListener(object :
-            RecyclerviewAdapter.RecyclerLayoutClickListener {
-            override fun redirectToDetailScreen() {
-                val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                intent.putExtra(Constants.GITHUBENTITY, this@MainActivity.dataList[0])
-                startActivity(intent)
-            }
-        })
-        val categoryLinearLayoutManager = LinearLayoutManager(this)
-        categoryLinearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        binding.recyclerview.layoutManager = categoryLinearLayoutManager
-        recyclerviewAdapter.setAppList(dataList)
-        binding.recyclerview.adapter = recyclerviewAdapter
-    }*/
 }
