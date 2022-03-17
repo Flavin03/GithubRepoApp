@@ -9,10 +9,11 @@ import com.githubrepo.data.RepoPageDataSourceFactory
 import com.githubrepo.network.Data
 import com.githubrepo.network.NetworkState
 import com.githubrepo.network.RepoRemoteDataSource
-import com.githubrepo.ui.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class GithubRepository @Inject constructor(
     private val githubDao: GithubDao,
     private val repoRemoteDataSource: RepoRemoteDataSource){
@@ -26,7 +27,7 @@ class GithubRepository @Inject constructor(
     }
     private fun observeLocalPagedData(): Data<GithubEntity> {
 
-        val dataSourceFactory = githubDao.getPagedNews()
+        val dataSourceFactory = githubDao.getPagedRepoData()
 
         val createLD = MutableLiveData<NetworkState>()
         createLD.postValue(NetworkState.LOADED)
@@ -45,6 +46,11 @@ class GithubRepository @Inject constructor(
         }
         return Data(LivePagedListBuilder(dataSourceFactory,
             RepoPageDataSourceFactory.pagedListConfig()).build(),networkState)
+    }
+
+    fun syncRepoData(connectivityAvailable : Boolean, coroutineScope: CoroutineScope){
+        if (connectivityAvailable)
+            observeRemotePagedData(coroutineScope)
     }
 
 }

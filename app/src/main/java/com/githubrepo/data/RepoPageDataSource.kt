@@ -22,15 +22,15 @@ class RepoPageDataSource  @Inject constructor(
     val networkState = MutableLiveData<NetworkState>()
 
     override fun loadInitial(
-        params: PageKeyedDataSource.LoadInitialParams<Int>,
-        callback: PageKeyedDataSource.LoadInitialCallback<Int, GithubEntity>
+        params: LoadInitialParams<Int>,
+        callback: LoadInitialCallback<Int, GithubEntity>
     ) {
         networkState.postValue(NetworkState.LOADING)
         fetchData(page = 1, pageSize = params.requestedLoadSize.toLong()) {
             callback.onResult(it, null, 2)
         }
     }
-    override fun loadAfter(params: PageKeyedDataSource.LoadParams<Int>, callback: PageKeyedDataSource.LoadCallback<Int, GithubEntity>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, GithubEntity>) {
         networkState.postValue(NetworkState.LOADING)
         val page = params.key
         fetchData(page = page, pageSize = params.requestedLoadSize.toLong()) {
@@ -38,7 +38,7 @@ class RepoPageDataSource  @Inject constructor(
         }
     }
 
-    override fun loadBefore(params: PageKeyedDataSource.LoadParams<Int>, callback: PageKeyedDataSource.LoadCallback<Int, GithubEntity>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, GithubEntity>) {
         val page = params.key
         fetchData(page, params.requestedLoadSize.toLong()) {
             callback.onResult(it, page - 1)
@@ -49,14 +49,14 @@ class RepoPageDataSource  @Inject constructor(
         coroutineScope.launch(getJobErrorHandler()) {
             when (val response = remoteDataSource.fetchRepoList(
                 "", "",pageSize)) {
-                is Result.Error<*> -> {
+                is Result.Error -> {
                     networkState.postValue(NetworkState.ERROR(response.message ?: "Unknown error"))
                     postError(response.message)
                 }
-                is Result.Success<*> -> {
-                    /*val results = response.data.items
+                is Result.Success -> {
+                    val results = response.data.items
                     githubDao.insertRepositories(results)
-                    callback(results)*/
+                    callback(results)
                     networkState.postValue(NetworkState.LOADED)
                 }
             }

@@ -32,17 +32,18 @@
             app:layout_constraintTop_toBottomOf="@id/detail_image"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/stars_title"
-            android:text="@string/app_name"
+            android:text="@string/stars_title"
             android:layout_marginTop="@dimen/margin16"
+            android:gravity="end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/stars_value"
             app:layout_constraintTop_toBottomOf="@id/repo_name"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/stars_value"
             android:text="@string/app_name"
@@ -52,17 +53,18 @@
             app:layout_constraintBottom_toBottomOf="@id/stars_title"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/watchers_title"
-            android:text="@string/app_name"
+            android:text="@string/watchers_title"
             android:layout_marginTop="@dimen/margin16"
+            android:gravity="end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/stars_value"
             app:layout_constraintTop_toBottomOf="@id/stars_title"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/watchers_value"
             android:text="@string/app_name"
@@ -72,17 +74,18 @@
             app:layout_constraintBottom_toBottomOf="@id/watchers_title"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/forks_title"
-            android:text="@string/app_name"
+            android:text="@string/fork_title"
             android:layout_marginTop="@dimen/margin16"
+            android:gravity="end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/stars_value"
             app:layout_constraintTop_toBottomOf="@id/watchers_title"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/forks_value"
             android:text="@string/app_name"

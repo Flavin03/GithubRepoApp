@@ -11,11 +11,11 @@ import com.githubrepo.ui.MainViewModel
 interface GithubDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRepositories(githubEntities: List<GithubEntity?>?): LongArray?
+    fun insertRepositories(githubEntities: List<GithubEntity?>?)
 
     @Query("SELECT * FROM `GithubEntity` where page = :page")
     fun getRepositoriesByPage(page: Long?): List<GithubEntity?>?
 
     @Query("SELECT * FROM GithubEntity")
-    fun getPagedNews(): DataSource.Factory<Int, GithubEntity>
+    fun getPagedRepoData(): DataSource.Factory<Int, GithubEntity>
 }

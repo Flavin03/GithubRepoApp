@@ -8,6 +8,7 @@ class Constants {
         const val PAGE_MAX_SIZE = "20"
         const val GITHUBENTITY = "GithubEntity"
         const val DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss"
+        const val STATE = "state"
 
     }
 

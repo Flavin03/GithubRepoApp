@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">Github Repo</string>
-    <string name="radius_title">Radius Selector</string>
-    <string name="radius">Radius</string>
-    <string name="radius_min">100M</string>
-    <string name="radius_max">5KM</string>
-    <string name="enable_gps">Please enable your gps</string>
-    <string name="permission_request">App requires location permission</string>
     <string name="no_data">No Data Found</string>
+    <string name="fork_title">Forks: </string>
+    <string name="watchers_title">Watchers: </string>
+    <string name="stars_title">Stars: </string>
+
 </resources>

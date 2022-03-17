@@ -1,5 +1,6 @@
 package com.githubrepo.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -14,6 +15,7 @@ import com.githubrepo.data.GithubEntity
 import com.githubrepo.databinding.ActivityMainBinding
 import com.githubrepo.network.NetworkState
 import com.githubrepo.utils.ConnectivityUtil
+import com.githubrepo.utils.Constants
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -24,28 +26,27 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appStoreHomeViewModel: MainViewModel
     lateinit var binding: ActivityMainBinding
     private var isConnected : Boolean = true
-    var dataList: ArrayList<GithubEntity> = ArrayList()
     private lateinit var recyclerviewAdapter: RecyclerviewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-       // appStoreHomeViewModel = injectViewModel(viewModelFactory)
         appStoreHomeViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
         binding.mainModelHome = appStoreHomeViewModel
-        /*binding.swipeRefresh.setOnRefreshListener {
-            binding.swipeRefresh.isRefreshing = true
-            subscribeDataCallBack()
-        }
-        setRecyclerView(dataList)   //send empty list initially
-        subscribeDataCallBack()*/
         isConnected = ConnectivityUtil.isConnected(this)
         if (!isConnected)
             Toast.makeText(this,"No internet connection!", Toast.LENGTH_SHORT).show()
         recyclerviewAdapter = RecyclerviewAdapter()
         binding.recyclerview.adapter = recyclerviewAdapter
         subscribeUI(recyclerviewAdapter)
+        recyclerviewAdapter.setClickListener(object: RecyclerviewAdapter.ClickListener{
+            override fun goToDetailScreen(githubEntity: GithubEntity) {
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra(Constants.GITHUBENTITY, githubEntity)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun subscribeUI(adapter: RecyclerviewAdapter) {

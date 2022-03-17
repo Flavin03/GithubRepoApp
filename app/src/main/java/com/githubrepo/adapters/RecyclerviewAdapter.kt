@@ -11,12 +11,12 @@ import com.githubrepo.databinding.ListItemBinding
 
 class RecyclerviewAdapter() :
     PagedListAdapter<GithubEntity, RecyclerviewAdapter.ViewHolder>(DiffCallback()) {
-    private val repoEntityList = ArrayList<GithubEntity>()
+    private var clickListener: ClickListener? = null
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val repoItem = getItem(position)
         holder.apply {
-            bind(createOnClickListener(repoItem), repoItem)
+            bind(createOnClickListener(repoItem!!), repoItem)
             itemView.tag = repoItem
         }
     }
@@ -29,9 +29,9 @@ class RecyclerviewAdapter() :
         )
     }
 
-    private fun createOnClickListener(newItem: GithubEntity?): View.OnClickListener {
+    private fun createOnClickListener(githubEntity: GithubEntity): View.OnClickListener {
         return View.OnClickListener {
-
+            clickListener?.goToDetailScreen(githubEntity)
         }
     }
 
@@ -49,6 +49,13 @@ class RecyclerviewAdapter() :
         }
     }
 
+    interface ClickListener{
+        fun goToDetailScreen(githubEntity: GithubEntity)
+    }
+
+    fun setClickListener(clickListener: ClickListener){
+           this.clickListener = clickListener
+    }
 }
 
 private class DiffCallback : DiffUtil.ItemCallback<GithubEntity>() {

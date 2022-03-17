@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Flavin/GithubRepoApp/app/src/main/res/layout/activity_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Flavin/GithubRepoApp/app/src/main/res/layout/activity_main.xml" value="0.25998934469898777" />
+        <entry key="..\:/Flavin/GithubRepoApp/app/src/main/res/layout/list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Flavin/MVVM/GithubRepoApp/app/src/main/res/drawable/circle_drawable.xml" value="0.1" />
         <entry key="..\:/Flavin/MVVM/GithubRepoApp/app/src/main/res/layout/activity_detail.xml" value="0.12771739130434784" />
         <entry key="..\:/Flavin/MVVM/GithubRepoApp/app/src/main/res/layout/activity_main.xml" value="0.12771739130434784" />
